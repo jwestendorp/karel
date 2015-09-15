@@ -149,6 +149,10 @@ void Opdracht1 ()
         }
     }
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> jelmar-luff-karel
 void move_and_place()
 {
   while (!in_front_of_wall())
@@ -159,6 +163,7 @@ void move_and_place()
   }
 }
 void just_move()
+<<<<<<< HEAD
 {
   //charles is just moving
   while (!in_front_of_wall())
@@ -213,106 +218,67 @@ void enter_cave()
   turn_right();
 }
 void bottom_rows()
+=======
+>>>>>>> jelmar-luff-karel
 {
-  //while we are not in front of a top wall (we are going up)
+  //charles is just moving
   while (!in_front_of_wall())
   {
-    //just place a ball and keep on stepping
-    put_ball();
     step();
   }
-  //if we hit the top wall
+}
+void compact()
+{
+  move_and_place();
   if (in_front_of_wall())
   {
-    //do a 180
-    put_ball();
+    //place final ball and do a 180
+    place_ball();
     turn_left();
-
     turn_left();
-    //get back the same way we came
-    while (!in_front_of_wall())
-    {
-      step();
-    }
-    //check if we are at the bottom wall
+    //get back
+    just_move();
     if (in_front_of_wall())
     {
-
-      //we are at the bottom wall
-      //prepare for next row
       turn_right();
-      step();
       if (in_front_of_wall())
       {
-        //we are there
-
+        turn_right();
+        just_move();
+        if ((in_front_of_wall()) && (!on_ball()))
+        {
+          turn_right();
+          step();
+          turn_right();
+          compact();
+        }
+        if ((in_front_of_wall()) && (on_ball()))
+        {
+          //we are done
+        }
       }
       else
       {
         turn_right();
-        bottom_rows();
+        step();
+        turn_right();
+        compact();
       }
-
     }
   }
 }
-void caveman()
-{
-    //while not in front of a wall
-    while (!in_front_of_wall())
-    {
-      //place a ball and step until charles hits a wall
-      put_ball();
-      step();
-    }
-    //then if in front of the bottom wall, place final ball and head back
-    if (in_front_of_wall())
-    {
-      //place final, do a 180
-      put_ball();
-      turn_left();
-      turn_left();
-      //go up again in the same row
-      while (!in_front_of_wall())
-      {
-        step();
-      }
-      //then if we hit the top wall
-      if (in_front_of_wall())
-      {
-        //go to the next row
-        turn_right();
-        step();
-        //if we find a wall here, we are at the right wall
-        if (in_front_of_wall())
-        {
-          turn_right();
-          while (!in_front_of_wall())
-          {
-            //travel until he hits the bottom wall
-            step();
-          }
-          if (in_front_of_wall())
-          {
-            //we are at the bottom wall
-            turn_right();
-            step();
-            turn_right();
-            //go through row up
-            bottom_rows();
-          }
 
-        }
-        turn_right();
-        caveman();
-      }
-    }
+void enter_cave()
+{
+  step();
+  turn_right();
 }
 
 void execution()
 {
   enter_cave();
   compact();
+<<<<<<< HEAD
 }
 
 void kerk_zoeken(){
@@ -327,6 +293,22 @@ void kerk_zoeken(){
 void rondje_kerk(){
     //is muur rechts van karel?
 
+=======
+}
+
+void kerk_zoeken(){
+    while (!in_front_of_wall()){
+            step();
+        }
+        if (in_front_of_wall()){
+            stop();
+        }
+}
+
+void rondje_kerk(){
+    //is muur rechts van karel?
+
+>>>>>>> jelmar-luff-karel
     while (in_front_of_wall()){
         turn_left();
     }
@@ -350,10 +332,13 @@ void Bonus(){
         rondje_kerk();
         stop();
     }
+<<<<<<< HEAD
 
 
 
 
+=======
+>>>>>>> jelmar-luff-karel
 }
 
 // end of part with code to be completed by students
