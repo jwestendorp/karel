@@ -263,46 +263,45 @@ void execution()
   caveman();
 }
 
-void kerk_zoeken(){
-    while (!in_front_of_wall()){
-            step();
-        }
-        if (in_front_of_wall()){
-            stop();
-        }
-}
-
-void rondje_kerk(){
-    //is muur rechts van karel?
-
-    while (in_front_of_wall()){
-        turn_left();
-    }
-    while (!in_front_of_wall()){
-        step();
-        turn_left();
-    }
-}
 
 void Bonus(){
 
     //karel zoekt bal
-    while (!on_ball){
+    while(!on_ball()){
         step();
     }
-
-    //karel zoekt kerk
     if (on_ball()){
         turn_right();
-        kerk_zoeken();
-        rondje_kerk();
-        stop();
+    }
+
+
+    //Karel Zoekt kerk
+    while (!in_front_of_wall()){
+            step();
+    }
+    if (in_front_of_wall()){
+    }
+
+    //Rondje kerk
+
+
+
+
+    while (!in_front_of_wall()){
+        step();
+        turn_right();
+    }
+
+    while (in_front_of_wall()){
+        turn_left();
+    }
+        //stop();
     }
 
 
 
 
-}
+
 
 // end of part with code to be completed by students
 // =========================================================================
@@ -335,7 +334,7 @@ int WINAPI WinMain (HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR szCmdLine
     Menu o1_menu ((char*)"OPDRACHTEN");
 	o1_menu.add ((char*)"Opdracht 1", Opdracht1 )
 		   .add ((char*)"Opdracht 2", execution )
-		   .add ((char*)"BONUS", Bonus )
+		   .add ((char*)"BONUS", Bonus)
 	       .add ((char*)"Test a function",test);
 
 	try
