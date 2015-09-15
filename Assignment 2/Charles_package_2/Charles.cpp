@@ -307,8 +307,7 @@ void enter_cave()
 }
 void djensen()
 {
-  turn_right();
-  djensen();
+
 }
 void bottom_rows()
 {
@@ -343,7 +342,7 @@ void bottom_rows()
       if (in_front_of_wall())
       {
         //we are there
-        djensen();
+
       }
       else
       {
