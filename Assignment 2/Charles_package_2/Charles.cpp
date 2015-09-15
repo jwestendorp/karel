@@ -73,102 +73,11 @@ void rondje_om_de_kerk ()
 
 }
 
-void test(){
-
-}
 
 // For testing purposes, you can define your own function here:
-
-/*
-SITUATIES
-
-- in_front_of_wall
-    -on_ball
-    -north?
-
-*/
-void turn_around ()
-{
-    turn_left();
-    turn_left();
+void test(){
 }
 
-void begin()
-{
-  step();
-  turn_right();
-}
-void putitdown()
-{
-  put_ball();
-  step();
-}
-
-void ass_2()
-{
-  if (!in_front_of_wall())
-  {
-    //put_ball();
-
-    putitdown();
-    ass_2();
-  }
-
-  if (in_front_of_wall())
-  {
-    put_ball();
-    turn_left();
-    step();
-    if (!on_ball())
-    {
-      turn_left();
-      ass_2();
-    }
-    if (on_ball())
-    {
-      turn_left();
-      turn_left();
-      step();
-      step();
-      turn_right();
-      ass_2();
-    }
-  }
-}
-void mainfunction()
-{
-  begin();
-  ass_2();
-}
-void test ()
-{
-    //naar 1e muur
-
-    step();
-    turn_right();
-
-    while (!in_front_of_wall()){
-        put_ball();
-        step();
-    }
-    if (in_front_of_wall()){
-        put_ball();
-        turn_left();
-        turn_left();
-
-        while (!in_front_of_wall()){
-            step();
-        }
-
-
-    }
-    if (in_front_of_wall()){
-            turn_right();
-            return test();
-
-    }
-
-}
 
 
 void nieuwe_bal_zoeken ()
@@ -210,65 +119,7 @@ void nieuwe_bal_zoeken ()
 
     }
 }
-void Hansel1()
-{
-  // niet voor een muur
-  if (!in_front_of_wall())
-  {
-    //en op een bal
-    if (on_ball())
-    {
-      //loop naar voren en check opnieuw
-      step();
-      Hansel1();
-    }
-    //niet op een bal
-    if (!on_ball())
-    {
-      //start checking2
-      turn_right();
-      turn_right();
-      step();
-      turn_left();
 
-      if (!in_front_of_wall()){
-        step();
-      }
-      else{
-            turn_right();
-      turn_right();
-        Hansel1();
-      }
-
-      if (on_ball())
-      {
-        Hansel1();
-      }
-      if (!on_ball())
-      {
-        turn_right();
-        turn_right();
-        step();
-        step();
-        if (!on_ball())
-        {
-          turn_right();
-          stop();
-        }
-        if (on_ball())
-        {
-          stop();
-        }
-      }
-    }
-  }
-  //wel voor een muur
-  if (in_front_of_wall())
-  {
-    turn_left();
-    Hansel1();
-  }
-}
 
 void Opdracht1 ()
 {
@@ -464,14 +315,53 @@ void execution()
   compact();
 }
 
+void kerk_zoeken(){
+    while (!in_front_of_wall()){
+            step();
+        }
+        if (in_front_of_wall()){
+            stop();
+        }
+}
 
+void rondje_kerk(){
+    //is muur rechts van karel?
+
+    while (in_front_of_wall()){
+        turn_left();
+    }
+    while (!in_front_of_wall()){
+        step();
+        turn_left();
+    }
+}
+
+void Bonus(){
+
+    //karel zoekt bal
+    while (!on_ball){
+        step();
+    }
+
+    //karel zoekt kerk
+    if (on_ball()){
+        turn_right();
+        kerk_zoeken();
+        rondje_kerk();
+        stop();
+    }
+
+
+
+
+}
 
 // end of part with code to be completed by students
 // =========================================================================
 
 
-void quick  () { rest(    0.1); };
-void normal () { rest(1); };
+void quick  () { rest(    1); };
+void normal () { rest(0.5); };
 void slow   () { rest(  250); };
 void very_slow  () { rest( 1000); };
 
@@ -493,6 +383,12 @@ int WINAPI WinMain (HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR szCmdLine
 		   .add ((char*)"Normal",normal)
 		   .add ((char*)"Slow",slow)
 		   .add ((char*)"Very slow",very_slow);
+
+    Menu o1_menu ((char*)"OPDRACHTEN");
+	o1_menu.add ((char*)"Opdracht 1", Opdracht1 )
+		   .add ((char*)"Opdracht 2", execution )
+		   .add ((char*)"BONUS", Bonus )
+	       .add ((char*)"Test a function",test);
 
 	try
 	{

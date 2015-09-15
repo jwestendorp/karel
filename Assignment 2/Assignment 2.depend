@@ -17,3 +17,21 @@
 	<fstream>
 	"Robot.h"
 
+1347535784 source:c:\users\gebruiker\documents\github\karel\assignment 2\charles_package_2\gui_kernel.cpp
+	"gui_kernel.h"
+	<algorithm>
+	<cstdlib>
+
+1252401030 c:\users\gebruiker\documents\github\karel\assignment 2\charles_package_2\gui_kernel.h
+	<windows.h>
+
+1441821574 source:c:\users\gebruiker\documents\github\karel\assignment 2\charles_package_2\robot.cpp
+	<fstream>
+	"Robot.h"
+
+1410353714 c:\users\gebruiker\documents\github\karel\assignment 2\charles_package_2\robot.h
+	"gui_kernel.h"
+
+1442331842 source:c:\users\gebruiker\documents\github\karel\assignment 2\charles_package_2\charles.cpp
+	"Robot.h"
+
