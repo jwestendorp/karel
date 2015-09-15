@@ -1,0 +1,19 @@
+# depslib dependency file v1.0
+1442328666 source:c:\users\gebruiker\desktop\informatica\imperatief programmeren\assignment 2\charles_package_2\charles.cpp
+	"Robot.h"
+
+1410353714 c:\users\gebruiker\desktop\informatica\imperatief programmeren\assignment 2\charles_package_2\robot.h
+	"gui_kernel.h"
+
+1252401030 c:\users\gebruiker\desktop\informatica\imperatief programmeren\assignment 2\charles_package_2\gui_kernel.h
+	<windows.h>
+
+1347535784 source:c:\users\gebruiker\desktop\informatica\imperatief programmeren\assignment 2\charles_package_2\gui_kernel.cpp
+	"gui_kernel.h"
+	<algorithm>
+	<cstdlib>
+
+1441821574 source:c:\users\gebruiker\desktop\informatica\imperatief programmeren\assignment 2\charles_package_2\robot.cpp
+	<fstream>
+	"Robot.h"
+
