@@ -298,16 +298,68 @@ void Opdracht1 ()
         }
     }
 }
-
+void move_and_place()
+{
+  while (!in_front_of_wall())
+  {
+    //moving and placing
+    put_ball();
+    step();
+  }
+}
+void just_move()
+{
+  //charles is just moving
+  while (!in_front_of_wall())
+  {
+    step();
+  }
+}
+void compact()
+{
+  move_and_place();
+  if (in_front_of_wall())
+  {
+    //place final ball and do a 180
+    place_ball();
+    turn_left();
+    turn_left();
+    //get back
+    just_move();
+    if (in_front_of_wall())
+    {
+      turn_right();
+      if (in_front_of_wall())
+      {
+        turn_right();
+        just_move();
+        if ((in_front_of_wall()) && (!on_ball()))
+        {
+          turn_right();
+          step();
+          turn_right();
+          compact();
+        }
+        if ((in_front_of_wall()) && (on_ball()))
+        {
+          //we are done
+        }
+      }
+      else
+      {
+        turn_right();
+        step();
+        turn_right();
+        compact();
+      }
+    }
+  }
+}
 
 void enter_cave()
 {
   step();
   turn_right();
-}
-void djensen()
-{
-
 }
 void bottom_rows()
 {
@@ -409,7 +461,7 @@ void caveman()
 void execution()
 {
   enter_cave();
-  caveman();
+  compact();
 }
 
 
