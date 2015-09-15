@@ -149,10 +149,8 @@ void Opdracht1 ()
         }
     }
 }
-<<<<<<< HEAD
-=======
 
->>>>>>> jelmar-luff-karel
+
 void move_and_place()
 {
   while (!in_front_of_wall())
@@ -162,71 +160,16 @@ void move_and_place()
     step();
   }
 }
+
 void just_move()
-<<<<<<< HEAD
 {
   //charles is just moving
   while (!in_front_of_wall())
   {
     step();
-  }
-}
-void compact()
-{
-  move_and_place();
-  if (in_front_of_wall())
-  {
-    //place final ball and do a 180
-    place_ball();
-    turn_left();
-    turn_left();
-    //get back
-    just_move();
-    if (in_front_of_wall())
-    {
-      turn_right();
-      if (in_front_of_wall())
-      {
-        turn_right();
-        just_move();
-        if ((in_front_of_wall()) && (!on_ball()))
-        {
-          turn_right();
-          step();
-          turn_right();
-          compact();
-        }
-        if ((in_front_of_wall()) && (on_ball()))
-        {
-          //we are done
-        }
-      }
-      else
-      {
-        turn_right();
-        step();
-        turn_right();
-        compact();
-      }
-    }
   }
 }
 
-void enter_cave()
-{
-  step();
-  turn_right();
-}
-void bottom_rows()
-=======
->>>>>>> jelmar-luff-karel
-{
-  //charles is just moving
-  while (!in_front_of_wall())
-  {
-    step();
-  }
-}
 void compact()
 {
   move_and_place();
@@ -278,7 +221,7 @@ void execution()
 {
   enter_cave();
   compact();
-<<<<<<< HEAD
+
 }
 
 void kerk_zoeken(){
@@ -293,7 +236,7 @@ void kerk_zoeken(){
 void rondje_kerk(){
     //is muur rechts van karel?
 
-=======
+
 }
 
 void kerk_zoeken(){
@@ -308,7 +251,7 @@ void kerk_zoeken(){
 void rondje_kerk(){
     //is muur rechts van karel?
 
->>>>>>> jelmar-luff-karel
+
     while (in_front_of_wall()){
         turn_left();
     }
@@ -321,7 +264,7 @@ void rondje_kerk(){
 void Bonus(){
 
     //karel zoekt bal
-    while (!on_ball){
+    while (!on_ball()){
         step();
     }
 
@@ -332,13 +275,7 @@ void Bonus(){
         rondje_kerk();
         stop();
     }
-<<<<<<< HEAD
 
-
-
-
-=======
->>>>>>> jelmar-luff-karel
 }
 
 // end of part with code to be completed by students
