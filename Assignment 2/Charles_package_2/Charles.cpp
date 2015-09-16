@@ -93,8 +93,10 @@ void nieuwe_bal_zoeken ()
         step(); step();
 
         if (!on_ball()){
-            exit(1);
+            //we are done;
             //return;
+            //terminate the process
+            exit(0);
         }
         }
     }
@@ -112,17 +114,17 @@ void nieuwe_bal_zoeken ()
         }
 
         if (!on_ball()){
-            stop();
+            //we are done
+            //terminate the process
+            exit(0);
         }
 
 
     }
 }
-
-
-void Opdracht1 ()
+void Opdracht1()
 {
-        // enter your Charles code here
+    // enter your Charles code here
     if (on_ball()){
         if (in_front_of_wall()){
             nieuwe_bal_zoeken();
@@ -144,11 +146,10 @@ void Opdracht1 ()
             Opdracht1();
         }
         else{
-            stop();
+            //we are done
         }
     }
 }
-
 
 void move_and_place()
 {
@@ -215,57 +216,77 @@ void enter_cave()
   turn_right();
 }
 
-void execution()
+void Opdracht2()
 {
   enter_cave();
   compact();
 
 }
+void rondjes()
+{
+    while (!on_ball())
+    {
+        while (in_front_of_wall())
+        {
+            turn_right();
+            if (!in_front_of_wall())
+            {
+                step();
+                turn_left();
+                rondjes();
+            }
+            if (in_front_of_wall())
+            {
+                turn_right();
+                step();
+                turn_left();
+            }
+        }
+        while (!in_front_of_wall())
+        {
+            step();
+            turn_left();
+            rondjes();
+        }
 
-void kerk_zoeken(){
-    while (!in_front_of_wall()){
+    }
+    if (on_ball())
+    {
+        turn_right();
+        just_move();
+        turn_right();
+        just_move();
+        //we are done
+    }
+
+}
+void Bonus()
+{
+    while (!on_ball())
+    {
+        step();
+    }
+    if (on_ball())
+    {
+        turn_right();
+        while (!in_front_of_wall())
+        {
             step();
         }
-        if (in_front_of_wall()){
-            stop();
+        if (in_front_of_wall())
+        {
+            put_ball();
+            rondjes();
         }
-}
-
-void rondje_kerk(){
-    //is muur rechts van karel?
-
-
-    while (in_front_of_wall()){
-        turn_left();
-    }
-    while (!in_front_of_wall()){
-        step();
-        turn_left();
     }
 }
 
-void Bonus(){
-
-    //karel zoekt bal
-    while (!on_ball()){
-        step();
-    }
-
-    //karel zoekt kerk
-    if (on_ball()){
-        turn_right();
-        kerk_zoeken();
-        rondje_kerk();
-        stop();
-    }
-
-}
 
 // end of part with code to be completed by students
 // =========================================================================
 
 
-void quick  () { rest(    0.5); };
+void quick  () { rest(0.5); };
 void normal () { rest(0.5); };
 void slow   () { rest(  250); };
 void very_slow  () { rest( 1000); };
@@ -281,7 +302,7 @@ int WINAPI WinMain (HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR szCmdLine
 		   .add ((char*)"Cave", start_cave )
 		   .add ((char*)"Bonus: rondje om de kerk...", rondje_om_de_kerk )
 	       .add ((char*)"Test a function",test)
-	       .add ((char*)"Opdracht 1",execution);
+	       .add ((char*)"Opdracht 1",Opdracht2);
 
 	Menu sn_menu ((char*)"Velocity");
 	sn_menu.add ((char*)"Quick", quick)
@@ -290,8 +311,8 @@ int WINAPI WinMain (HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR szCmdLine
 		   .add ((char*)"Very slow",very_slow);
 
     Menu o1_menu ((char*)"OPDRACHTEN");
-	o1_menu.add ((char*)"Opdracht 1", Opdracht1 )
-		   .add ((char*)"Opdracht 2", execution )
+	o1_menu.add ((char*)"Opdracht 1", Opdracht1)
+		   .add ((char*)"Opdracht 2", Opdracht2)
 		   .add ((char*)"BONUS", Bonus )
 	       .add ((char*)"Test a function",test);
 
