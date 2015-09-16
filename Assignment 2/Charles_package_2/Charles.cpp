@@ -75,11 +75,10 @@ void rondje_om_de_kerk ()
 
 
 // For testing purposes, you can define your own function here:
-void test(){
+void test()
+{
+
 }
-
-
-
 void nieuwe_bal_zoeken ()
 {
     //1e poging
@@ -176,7 +175,7 @@ void compact()
   if (in_front_of_wall())
   {
     //place final ball and do a 180
-    place_ball();
+    put_ball();
     turn_left();
     turn_left();
     //get back
@@ -184,26 +183,25 @@ void compact()
     if (in_front_of_wall())
     {
       turn_right();
+      step();
       if (in_front_of_wall())
       {
         turn_right();
         just_move();
-        if ((in_front_of_wall()) && (!on_ball()))
-        {
-          turn_right();
-          step();
-          turn_right();
-          compact();
-        }
-        if ((in_front_of_wall()) && (on_ball()))
+        turn_right();
+        step();
+        if (on_ball())
         {
           //we are done
+        }
+        else
+        {
+            turn_right();
+            compact();
         }
       }
       else
       {
-        turn_right();
-        step();
         turn_right();
         compact();
       }
@@ -221,21 +219,6 @@ void execution()
 {
   enter_cave();
   compact();
-
-}
-
-void kerk_zoeken(){
-    while (!in_front_of_wall()){
-            step();
-        }
-        if (in_front_of_wall()){
-            stop();
-        }
-}
-
-void rondje_kerk(){
-    //is muur rechts van karel?
-
 
 }
 
@@ -282,7 +265,7 @@ void Bonus(){
 // =========================================================================
 
 
-void quick  () { rest(    1); };
+void quick  () { rest(    0.5); };
 void normal () { rest(0.5); };
 void slow   () { rest(  250); };
 void very_slow  () { rest( 1000); };
