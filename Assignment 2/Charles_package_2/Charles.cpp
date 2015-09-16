@@ -27,8 +27,16 @@ void make_church ()
 
 // here starts the part with code to be completed by the students
 
-// Name / student number / study student 1 :
-// Name / student number / study student 2 :
+// Jelmar Gerritsen / s4636686 / study student 1 :
+// Jonas Westendorp / student number / study student 2 :
+
+/////////////////////////////////////////////////////////////////////////////
+//
+//
+//    Code is down below in separate voids
+//
+//
+/////////////////////////////////////////////////////////////////////////////
 
 // give one or more comment lines about what will happen in this function
 void follow_path ()
@@ -74,38 +82,42 @@ void rondje_om_de_kerk ()
 }
 
 
-// For testing purposes, you can define your own function here:
-void test()
-{
-
-}
+///////////////////////////////////
+// Own code starts here
+// Assignment voids are Opdracht1, Opdracht2 and Bonus
+// located in submenu "OPDRACHTEN"
+//////////////////////////////////
 void nieuwe_bal_zoeken ()
 {
-    //1e poging
+    //check left
     turn_left();
-
-    if (!in_front_of_wall()){
+    //if there is no wall, take a step
+    if (!in_front_of_wall())
+    {
         step();
-        //2e poging
-        if (!on_ball()){
+        //then check if we are on a ball
+        if (!on_ball())
+        {
+        //if we aren't, do a 180 degree turn and take two steps
         turn_left();
         turn_left();
         step(); step();
-
-        if (!on_ball()){
-            //we are done;
-            //return;
+        //if there's no ball there, we checked east north and west. the trail has ended.
+        if (!on_ball())
+        {
+            //we are done
             //terminate the process
             exit(0);
         }
         }
     }
-
-    else{
+    //if there is a wall to the left, do a 180 and take a step
+    else
+    {
         turn_left();
         turn_left();
         step();
-
+        //if there is no ball there
         if (!on_ball())
         {
         turn_left();
@@ -122,34 +134,51 @@ void nieuwe_bal_zoeken ()
 
     }
 }
+
+///////////////////////////////////////////////
+// this is the main functon for assignment 1 //
+///////////////////////////////////////////////
+
 void Opdracht1()
 {
-    // enter your Charles code here
-    if (on_ball()){
-        if (in_front_of_wall()){
+    // if we are on a ball
+    if (on_ball())
+    {
+        if (in_front_of_wall())
+        {
+            //if there's a wall, we need to check for the next ball which is not in front of us,
+            //after which we will check again
             nieuwe_bal_zoeken();
             Opdracht1();
         }
-
-        else{
+        //and not in front of a wall
+        else
+        {
+            //take a step and check again
             step();
             Opdracht1();
         }
     }
-
-    while (!on_ball()){
+    //while we are not on a ball
+    while (!on_ball())
+    {
+      //do a 180 and take a step back, then look for the next ball
         turn_left();
         turn_left();
         step();
         nieuwe_bal_zoeken();
+        //if we find it, start stepping again
         if (on_ball()){
             Opdracht1();
         }
         else{
-            //we are done
+            //we can't find the next ball, the trail has ended
+            //process will be terminated
         }
     }
 }
+
+// below are the functions for assignment 2
 
 void move_and_place()
 {
@@ -172,7 +201,9 @@ void just_move()
 
 void compact()
 {
+  //move and place balls
   move_and_place();
+  //until we hit a wall
   if (in_front_of_wall())
   {
     //place final ball and do a 180
@@ -181,22 +212,29 @@ void compact()
     turn_left();
     //get back
     just_move();
+    //then if we hit a wall again
     if (in_front_of_wall())
     {
+      //get into position again
       turn_right();
       step();
+      //if there's a wall there, we are at a side wall (east or west)
       if (in_front_of_wall())
       {
+        //which means we turn right and just walk down/up
         turn_right();
         just_move();
+        //after which we get into position again
         turn_right();
         step();
+        //if we find a ball, we are back at the starting position, which means
         if (on_ball())
         {
           //we are done
         }
         else
         {
+          //if there is no ball, we haven't been here before. get into position and start filling
             turn_right();
             compact();
         }
@@ -212,29 +250,41 @@ void compact()
 
 void enter_cave()
 {
+  //get into the right position
   step();
   turn_right();
 }
+
+///////////////////////////////////////////////
+// this is the main functon for assignment 2 //
+///////////////////////////////////////////////
 
 void Opdracht2()
 {
   enter_cave();
   compact();
-
 }
+
+//below are the bonus functions
+
 void rondjes()
 {
+  //while we are not at the reference ball
     while (!on_ball())
     {
+      //and in front of a wall
         while (in_front_of_wall())
         {
+          //check if there is a wall to the right
             turn_right();
+            //if there isn't, step, and turn left to check for a wall again
             if (!in_front_of_wall())
             {
                 step();
                 turn_left();
                 rondjes();
             }
+            //if there is a wall, step to the next tile and check again
             if (in_front_of_wall())
             {
                 turn_right();
@@ -244,38 +294,57 @@ void rondjes()
         }
         while (!in_front_of_wall())
         {
+          //if we find a tile which is not adjacent to a wall, step and look to the left for a wall
             step();
             turn_left();
             rondjes();
         }
 
     }
+    //if we hit the reference ball, initiate leaving procedure
     if (on_ball())
     {
+      //move until we find the western wall
         turn_right();
         just_move();
+      //then move until we find the top wall
         turn_right();
         just_move();
-        //we are done
+      //we are done
     }
 
 }
+
+///////////////////////////////////////////////////////
+// this is the main functon for the bonus assignment //
+///////////////////////////////////////////////////////
+
 void Bonus()
 {
+  //while we are not yet at the first ball that indicates the location of the church
     while (!on_ball())
     {
+      //keep stepping
         step();
     }
+    //when we hit it, turn right
     if (on_ball())
     {
         turn_right();
+        //and head down until we hit the church
         while (!in_front_of_wall())
         {
             step();
         }
+        //if we hit it, put a ball for reference and start circling the church
         if (in_front_of_wall())
         {
             put_ball();
+            //take one step to not trigger the leaving procedure immediately
+            turn_right();
+            step();
+            turn_left();
+            //start circling
             rondjes();
         }
     }
