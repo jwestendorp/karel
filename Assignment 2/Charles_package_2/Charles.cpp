@@ -28,7 +28,7 @@ void make_church ()
 // here starts the part with code to be completed by the students
 
 // Jelmar Gerritsen / s4636686 / study student 1 :
-// Jonas Westendorp / student number / study student 2 :
+// Jonas Westendorp / s4635582 / study student 2 :
 
 /////////////////////////////////////////////////////////////////////////////
 //
